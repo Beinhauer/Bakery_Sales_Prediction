@@ -19,6 +19,14 @@ This file tells coding agents (Claude Code, Codex, Cursor, …) what this projec
 - Weekdays are ordered Monday to Sunday, never alphabetically.
 - [Further team conventions, e.g. naming of files and variables]
 
+## Agentic data science
+
+- Canvas: `CANVAS.md` (read before any analysis work; update when something is decided)
+- Glossary: `GLOSSARY.md`; decisions: `DECISIONS.md`
+- Checks: `checks/`, run with `uv run pytest checks`; experiment log: `experiments/LOG.md`
+- Tracker: local files under `issues/` (labels `analysis-plan`, `experiment`, `ready-for-agent`; see `issues/README.md`)
+- Data: loaded from `https://raw.githubusercontent.com/opencampus-sh/intro-to-data-science-and-ml/main/data/bakery/` (main file `umsatzdaten_gekuerzt.csv`). Raw data is read-only.
+
 ## How the agent should work
 
 - Explain what you do in plain language and name the concept behind it. Many team members are not programmers.
