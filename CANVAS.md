@@ -78,6 +78,22 @@ All with reasons in `DECISIONS.md` (2026-11-18).
 
 ### 8. Checks 🤖
 <!-- Checkpoints and the invariants that must hold at each (row counts, keys, date ranges, IDs, baseline). Link checks/. -->
+All 11 confirmed by the team (2026-11-18). Run with `uv run pytest checks`. ✅ = written, ⏳ = written when the matching step is built.
+- **Raw sales** ([`checks/test_raw_sales.py`](checks/test_raw_sales.py)):
+  1. ✅ One row per (date, group); `id` unique and = `YYMMDD` + group.
+  2. ✅ Groups only 1–6; `Umsatz` > 0; no missing values.
+  3. ✅ Dates 2013-07-01 – 2018-07-31; exactly 1,819 sales days.
+  4. ✅ Seasonal bread (6) only in Oct–Jan.
+- **After join and cleaning:**
+  5. ⏳ 9,334 rows after the join; 9,329 after removing 2014-05-05; `KielerWoche` only 0/1, 223 Kiel Week rows.
+  6. ⏳ No missing temperature, cloud cover or wind on any sales day after filling.
+- **Modelling:**
+  7. ⏳ Split without overlap: training < validation < test.
+  8. ⏳ Leakage: changing sales after the planning time (weekly: last Sunday; daily: the day before) changes no input.
+  9. ⏳ Baseline (same weekday last week) computed for every group, with its MAPE reported.
+- **Output:**
+  10. ⏳ Weekdays ordered Monday–Sunday in all tables and charts.
+  11. ⏳ Pieces × price = turnover (once prices exist).
 
 ---
 
