@@ -4,6 +4,11 @@ This file tells coding agents (Claude Code, Codex, Cursor, …) what this projec
 
 ## Team
 
+Romina: tbd
+Mercy: tbd
+Phelgon: tbd
+Britta: tbd
+
 [Names and who is responsible for what, e.g. data preparation, baseline model, neural network, presentation.]
 
 ## Data
