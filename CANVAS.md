@@ -26,6 +26,12 @@ Today's practice (the baseline to beat) is unknown → Open questions.
 2. **Daily adjustment:** How much better does tomorrow's forecast get with today's sales and tomorrow's weather forecast? This tells us whether the adjustment is worth the effort. *Cannot answer:* the effect of *real* forecasts, because archived forecasts only exist from about 2021 (we test with observed weather instead, see block 6).
 3. **Pieces:** How many pieces per product group is that? Needs average prices from the bakery (Open questions).
 
+Hypotheses:
+1. Average daily bakery sales are higher during Kiel Week than during comparable days outside the festival periode. (M)
+2. Public holidays (except for Kiel week) influence daily sales. (P)
+3. Sales are lower during school holidays. (R)
+4. On sunny days cake sales are higher. (B)
+
 ### 3. Audiences 👤
 <!-- Who receives which result, in which form? At least: the decision-maker and the technical reader. -->
 - **Operations manager** (decision-maker): one-page table per day × product group with turnover, pieces and range, plus one plain sentence per special day (e.g. "Kiel Week: Rolls about +30%").
@@ -46,6 +52,11 @@ Today's practice (the baseline to beat) is unknown → Open questions.
 
 ### 5. Data 🤖
 <!-- Sources, unit of observation, period covered, keys, known gaps. Link the data fact sheet. -->
+Details: [`docs/data-fact-sheet.md`](docs/data-fact-sheet.md).
+- **Sales** (meteolytix, via the course): one row per day × product group, only on days with sales; 2013-07-01 – 2018-07-31; 9,334 rows; key (`Datum`, `Warengruppe`) unique; no missing values. 38 days with no sales (mostly holidays); confectionery has no row on 53 days (2013–2016 only); seasonal bread only Oct–Jan (292 rows). The 2014-05-05 value is probably 3 days booked together. Level about 10–15% lower from Aug 2015.
+- **Weather**: one row per day, 2012-01-01 – 2019-08-01; 3 sales days have no row; cloud cover missing 30.10.–08.11.2017; `Wettercode` missing on 25% of days, **not at random** (clearer, warmer days, and less often in later years). Observed values only.
+- **Kiel Week**: 9 days per year; **only 5 Kiel Weeks (2014–2018) fall inside the sales period**.
+- **Missing for our questions:** prices (for pieces), public and school holidays (external source needed), weather forecasts.
 
 ### 6. Known in advance 👤
 <!-- What information is available at the moment the result is needed? Everything else is leakage. -->
@@ -56,6 +67,14 @@ Today's practice (the baseline to beat) is unknown → Open questions.
 
 ### 7. Data decisions 👤
 <!-- Joins, missing values, encodings, exclusions, each with a reason. Link the entries in DECISIONS.md. -->
+All with reasons in `DECISIONS.md` (2026-11-18).
+- **Join:** left join of weather and Kiel Week onto sales by date; missing Kiel Week = 0.
+- **Missing rows = not on offer, not 0:** leave out the 38 no-sale days, the 53 days without confectionery and the 15 in-season days without seasonal bread. Seasonal bread is only forecast when it's on offer (known from the manager's plan).
+- **Unusual values:** keep the New Year's Eve cake peaks (New Year's Eve becomes an input). Remove 2014-05-05 from training and evaluation (probably 3 days booked together; manager asked).
+- **Level shift from Aug 2015:** all years plus a trend or year input by default; validation decides whether training from Aug 2015 only is better.
+- **Weather:** `Wettercode` → precipitation yes/no (missing = no). Fill the 3 missing weather days and 10 missing cloud values from neighbouring days.
+- **Holidays:** public holidays from the `holidays` package (Schleswig-Holstein); school holidays from a hand-made CSV (still to build).
+- **Split (provisional):** training Jul 2013 – Jul 2017 · validation Aug 2017 – Jul 2018 · test = Kaggle year, used once.
 
 ### 8. Checks 🤖
 <!-- Checkpoints and the invariants that must hold at each (row counts, keys, date ranges, IDs, baseline). Link checks/. -->
@@ -82,7 +101,10 @@ Today's practice (the baseline to beat) is unknown → Open questions.
 - **Average price per product group** (needed to convert turnover into pieces; not in the data). Resolves: the team asks the bakery. Without it, the piece analysis is not possible.
 - **Cost of leftovers vs. cost of selling out**, per group (only needed for the optional recommended baking amount). Resolves: the team asks the bakery.
 - **Which error costs more, baking too little or too much?** (maybe per product group). Resolves: the team asks the operations manager. Until then: both treated as equal.
-- **How to split the data** into training, validation and test (by time; the Kaggle year has no sales for us to check against). Resolves: the team, before any modelling.
+- **What happened on 2014-05-05?** (no sales on 03./04.05., then about 3× normal). Resolves: the team asks the manager. Until then the day is removed.
+- **Start of the seasonal-bread season** each year (needed as known-in-advance input). Resolves: the team asks the manager.
+- **School holiday CSV for Schleswig-Holstein 2013–2019**: still to be built from the official dates. Resolves: the team (who?).
+- **Split:** provisional (block 7); the team may change it before modelling starts.
 - **Staffing decisions** (from the earlier README draft): parked, possibly a later decision. Resolves: the team.
 
 ## Decision log

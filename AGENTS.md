@@ -14,7 +14,9 @@ Britta: tbd
 ## Data
 
 - Sales, weather and Kiel Week data: see the [dataset documentation](https://github.com/opencampus-sh/intro-to-data-science-and-ml/blob/main/data/bakery/README.md). Load the files from `https://raw.githubusercontent.com/opencampus-sh/intro-to-data-science-and-ml/main/data/bakery/`.
-- Additional data sources: [list them with link and the variables created from them]
+- Additional data sources:
+  - Public holidays: Python package [`holidays`](https://pypi.org/project/holidays/) (`holidays.Germany(subdiv="SH")`) → public holiday inputs.
+  - School holidays Schleswig-Holstein 2013–2019: hand-made CSV from the official dates (still to be built) → school holiday input.
 
 ## Conventions
 
