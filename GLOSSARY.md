@@ -10,6 +10,7 @@ One entry per term, variable or code the project uses. Keep the canonical name, 
 | `Datum` | Date | `YYYY-MM-DD` | Join key for all files. |
 | No-sale day | Date inside the sales period with no row for any group (38 days, mostly holidays) | | Shop presumably closed; not a day with 0 sales. |
 | `Bewoelkung` (cloud cover) | Mean cloud cover of the day | Octas, 0 = clear … 8 = overcast | Missing 30.10.–08.11.2017. |
+| Sunny day | Day with `Bewoelkung` ≤ 2 | 0/1 | Team definition for hypothesis 4. Based on observed cloud cover; not defined on the 10 days without cloud cover (30.10.–08.11.2017) until they are filled. |
 | `Temperatur` (temperature) | Mean temperature of the day | °C | Observed. |
 | `Windgeschwindigkeit` (wind speed) | Mean wind speed of the day | m/s | Observed. |
 | `Wettercode` (weather code) | WMO present-weather code | 0–99 | Missing on 25% of sales-period days; missing means clearer/warmer weather and is rarer in later years. |
