@@ -11,6 +11,21 @@ Newest first. One entry per decision taken at a stop point.
 **Decided by:** <names>
 -->
 
+## 2026-11-21: Hypothesis 4 also compared within each season
+**Canvas block:** 2
+**Decision:** In addition to the overall comparison, hypothesis 4 is repeated within each meteorological season (spring Mar–May, summer Jun–Aug, autumn Sep–Nov, winter Dec–Feb): descriptive statistics, a one-sided Mann-Whitney U test and a boxplot per season. Because 4 tests are run, results are also judged against the Bonferroni threshold 0.05 / 4 = 0.0125.
+**Reason:** The overall comparison cannot separate the effect of the sun from the effect of the season.
+**Alternatives considered:** Within the same month (12 small groups); astronomical seasons.
+**Decided by:** Britta (season definition proposed by the agent)
+
+## 2026-11-21: Hypothesis 4 compares sunny and non-sunny days overall
+**Canvas block:** 2
+**Decision:** For hypothesis 4 ("On sunny days cake sales are higher"), cake sales (group 5) on sunny days are compared with non-sunny days across the whole period, not within the same month or season.
+**Reason:** Team choice.
+**Limit:** Sunny days are more common in some seasons, so an overall difference can partly reflect the season rather than the sun itself.
+**Alternatives considered:** Compare within the same month or season (separates sun from season).
+**Decided by:** Britta
+
 ## 2026-11-18: Time-based split (provisional)
 **Canvas block:** 7
 **Decision:** Training Jul 2013 – Jul 2017; validation Aug 2017 – Jul 2018; test = Kaggle year Aug 2018 – Jul 2019, used once at the end. Provisional: the team may change it before modelling starts.

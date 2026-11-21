@@ -16,6 +16,7 @@ One entry per term, variable or code the project uses. Keep the canonical name, 
 | `Wettercode` (weather code) | WMO present-weather code | 0–99 | Missing on 25% of sales-period days; missing means clearer/warmer weather and is rarer in later years. |
 | `KielerWoche` (Kiel Week) | 1 on the 9 Kiel Week days | 0/1 | The file only lists Kiel Week days; others must be set to 0. Only 5 Kiel Weeks (2014–2018) fall in the sales period. |
 | Season (seasonal bread) | Period in which group 6 is on offer | Oct–Jan | Start date differs per year (24.10. – 03.11.). |
+| Meteorological season | Season of the year as used by weather services | Spring Mar–May, Summer Jun–Aug, Autumn Sep–Nov, Winter Dec–Feb | Used for the within-season comparison of hypothesis 4. Not the same as the seasonal-bread season above. |
 | Aug–Jul year | Year running from 1 August to 31 July, named after its start year | | Matches the Kaggle test year (Aug 2018 – Jul 2019). |
 | Pieces | Number of items to bake | Count | = turnover ÷ average price per product group. Prices come from the bakery, not the data. |
 | Expected sales | Our forecast of turnover (and pieces) per product group and day, with a range | Turnover / pieces | Contains no safety margin; the manager adds that. |
