@@ -34,7 +34,7 @@ To add your result:
 
 | # | Hypothesis | Owner | First answer | Status |
 |---|---|---|---|---|
-| 1 | Sales are higher during Kiel Week than on comparable days. | Mercy | *still open* | open |
+| 1 | Sales are higher during Kiel Week than on comparable days. | Mercy | **No:** compared with other summer days, sales differ by only −9% to +2% | first answer |
 | 2 | Public holidays (except Kiel Week) influence sales. | Phelgon | *still open* | open |
 | 3 | Sales are lower during school holidays. | Romina | *still open* | open |
 | 4 | Cake sales are higher on sunny days. | Britta | **Partly:** yes in autumn (+9%) and winter (+14%), not in spring and summer | first answer |
@@ -89,9 +89,25 @@ All figures are **turnover** (money taken), not pieces.
 
 ### Hypothesis 1: Are sales higher during Kiel Week?
 
-*Owner: Mercy · Source: notebook still to be linked*
+*Owner: Mercy · Source: `1_DatasetCharacteristics/mercy-kiel-week.ipynb`*
 
-*Still open.*
+**Comparable days** here means the other days in June, July and August. Kiel Week always falls in late June, when sales are higher anyway, so comparing it with winter days would be unfair.
+
+**Answer: No. During Kiel Week, sales are about the same as on other summer days.**
+
+| Product group | Average daily turnover during Kiel Week compared with other summer days |
+|---|---|
+| Bread | −2%, could be chance |
+| Rolls | +1%, could be chance |
+| Croissants | **−9%**, see below |
+| Confectionery | −1%, could be chance |
+| Cakes | +2%, could be chance |
+
+- **Compared with all other days of the year, Kiel Week looks much stronger** (rolls +35%, croissants +38%). This gap comes from the season, not from Kiel Week: sales are higher in summer in general.
+- **Croissants** sold about 9% less during Kiel Week than on other summer days, in 4 of the 5 years.
+- **How sure we are:** the data covers only 5 Kiel Weeks (45 days). For bread, rolls, confectionery and cakes the differences are so small that they are most likely chance. For croissants it is a borderline case: the dip may be real, but it could still be chance.
+- **What this does not show:** what customers would have bought on days when items sold out. Also, July and August are the main holiday months, so "other summer days" are not a perfect comparison for late June, and this could partly explain the croissant dip. We compared averages only and have not yet separated out weekday or weather.
+- **What this means for the forecast:** the season matters much more than Kiel Week. We will check whether marking Kiel Week days adds anything once the season is part of the forecast. Seasonal bread is not on offer in summer and is not affected.
 
 ### Hypothesis 2: Do public holidays influence sales?
 
